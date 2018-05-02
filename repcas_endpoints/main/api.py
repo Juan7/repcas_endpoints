@@ -14,6 +14,19 @@ def dictfetchall(cursor):
     ]
 
 
+class SalesmanViewSet(viewsets.ViewSet):
+    
+    def get_queryset(self):
+        with connection.cursor() as cursor:
+            cursor.execute("SELECT * FROM Salesman")
+            queryset = dictfetchall(cursor)
+        return queryset
+    
+    def list(self, request):
+        serializer = serializers.SalesmanSerializer(self.get_queryset(), many=True)
+        return Response(serializer.data)
+
+
 class ClientViewSet(viewsets.ViewSet):
     
     def get_queryset(self):

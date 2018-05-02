@@ -3,11 +3,20 @@ from decimal import Decimal
 from rest_framework import serializers
 
 
+class SalesmanSerializer(serializers.Serializer):
+    
+    code = serializers.CharField(max_length=254)
+    name = serializers.CharField(max_length=254)
+    flagenable = serializers.BooleanField()
+
+
 class ClientSerializer(serializers.Serializer):
     
     code = serializers.CharField(max_length=254)
     name = serializers.CharField(max_length=254)
     address = serializers.CharField(max_length=254)
+    creditdays = serializers.IntegerField(default=0)
+    creditline = serializers.DecimalField(max_digits=10, decimal_places=4, min_value=Decimal('0.00'))
     distributionchannelcode = serializers.CharField(max_length=254)
 
     

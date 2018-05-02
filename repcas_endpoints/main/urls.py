@@ -7,6 +7,7 @@ from . import api, views
 app_name = 'main'
 
 router = DefaultRouter()
+router.register('salesman', api.SalesmanViewSet, base_name='api_salesman')
 router.register('clients', api.ClientViewSet, base_name='api_client')
 router.register('distribution-channel', api.DistributionChannelViewSet, base_name='api_distribution_channel')
 router.register('billing-document', api.BillingDocumentViewSet, base_name='api_billing_document')
